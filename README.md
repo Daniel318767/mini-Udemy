@@ -8,10 +8,10 @@
 | Integrante | Rol | Microservicio a cargo | Usuario GitHub |
 |------------|-----|-----------------------|----------------|
 | Nombre Apellido 1 | **Líder** (administra el repo y revisa los PR) | Estudiantes | @JhimyMc |
-| Nombre Apellido 2 | Desarrollador | Cursos | @usuario2 |
-| Nombre Apellido 3 | Desarrollador | Inscripciones | @usuario3 |
-| Nombre Apellido 4 | Desarrollador | Progreso | @usuario4 |
-| Nombre Apellido 5 | Desarrollador | Certificados | @usuario5 |
+| Nombre Apellido 2 | Desarrollador | Cursos | @LUIS CRISTIAN |
+| Nombre Apellido 3 | Desarrollador | Inscripciones | @Daniel |
+| Nombre Apellido 4 | Desarrollador | Progreso | @Andree |
+| Nombre Apellido 5 | Desarrollador | Certificados | @Urpi R |
 
 ---
 
