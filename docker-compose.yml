@@ -1,0 +1,185 @@
+services:
+  estudiantes:
+    build: ./estudiantes
+    container_name: estudiantes-app
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      DB_HOST: estudiantes-db
+      DB_PORT: 5432
+      DB_NAME: estudiantes_db
+      DB_USER: estudiantes_user
+      DB_PASSWORD: estudiantes123
+    depends_on:
+      estudiantes-db:
+        condition: service_healthy
+
+  estudiantes-db:
+    image: postgres:16
+    container_name: estudiantes-db
+    environment:
+      POSTGRES_DB: estudiantes_db
+      POSTGRES_USER: estudiantes_user
+      POSTGRES_PASSWORD: estudiantes123
+    volumes:
+      - estudiantes_data:/var/lib/postgresql/data
+      - ./estudiantes/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U estudiantes_user -d estudiantes_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  cursos:
+    build: ./cursos
+    container_name: cursos-app
+    ports:
+      - "3002:3002"
+    environment:
+      PORT: 3002
+      DB_HOST: cursos-db
+      DB_PORT: 5432
+      DB_NAME: cursos_db
+      DB_USER: cursos_user
+      DB_PASSWORD: cursos123
+    depends_on:
+      cursos-db:
+        condition: service_healthy
+
+  cursos-db:
+    image: postgres:16
+    container_name: cursos-db
+    environment:
+      POSTGRES_DB: cursos_db
+      POSTGRES_USER: cursos_user
+      POSTGRES_PASSWORD: cursos123
+    volumes:
+      - cursos_data:/var/lib/postgresql/data
+      - ./cursos/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cursos_user -d cursos_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  inscripciones:
+    build: ./inscripciones
+    container_name: inscripciones-app
+    ports:
+      - "3003:3003"
+    environment:
+      PORT: 3003
+      DB_HOST: inscripciones-db
+      DB_PORT: 5432
+      DB_NAME: inscripciones_db
+      DB_USER: inscripciones_user
+      DB_PASSWORD: inscripciones123
+      ESTUDIANTES_URL: http://estudiantes:3001
+      CURSOS_URL: http://cursos:3002
+    depends_on:
+      inscripciones-db:
+        condition: service_healthy
+      estudiantes:
+        condition: service_started
+      cursos:
+        condition: service_started
+
+  inscripciones-db:
+    image: postgres:16
+    container_name: inscripciones-db
+    environment:
+      POSTGRES_DB: inscripciones_db
+      POSTGRES_USER: inscripciones_user
+      POSTGRES_PASSWORD: inscripciones123
+    volumes:
+      - inscripciones_data:/var/lib/postgresql/data
+      - ./inscripciones/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U inscripciones_user -d inscripciones_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  progreso:
+    build: ./progreso
+    container_name: progreso-app
+    ports:
+      - "3004:3004"
+    environment:
+      PORT: 3004
+      DB_HOST: progreso-db
+      DB_PORT: 5432
+      DB_NAME: progreso_db
+      DB_USER: progreso_user
+      DB_PASSWORD: progreso123
+      INSCRIPCIONES_URL: http://inscripciones:3003
+      CURSOS_URL: http://cursos:3002
+    depends_on:
+      progreso-db:
+        condition: service_healthy
+      inscripciones:
+        condition: service_started
+      cursos:
+        condition: service_started
+
+  progreso-db:
+    image: postgres:16
+    container_name: progreso-db
+    environment:
+      POSTGRES_DB: progreso_db
+      POSTGRES_USER: progreso_user
+      POSTGRES_PASSWORD: progreso123
+    volumes:
+      - progreso_data:/var/lib/postgresql/data
+      - ./progreso/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U progreso_user -d progreso_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  certificados:
+    build: ./certificados
+    container_name: certificados-app
+    ports:
+      - "3005:3005"
+    environment:
+      PORT: 3005
+      DB_HOST: certificados-db
+      DB_PORT: 5432
+      DB_NAME: certificados_db
+      DB_USER: certificados_user
+      DB_PASSWORD: certificados123
+      INSCRIPCIONES_URL: http://inscripciones:3003
+      PROGRESO_URL: http://progreso:3004
+    depends_on:
+      certificados-db:
+        condition: service_healthy
+      inscripciones:
+        condition: service_started
+      progreso:
+        condition: service_started
+
+  certificados-db:
+    image: postgres:16
+    container_name: certificados-db
+    environment:
+      POSTGRES_DB: certificados_db
+      POSTGRES_USER: certificados_user
+      POSTGRES_PASSWORD: certificados123
+    volumes:
+      - certificados_data:/var/lib/postgresql/data
+      - ./certificados/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U certificados_user -d certificados_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  estudiantes_data:
+  cursos_data:
+  inscripciones_data:
+  progreso_data:
+  certificados_data:
