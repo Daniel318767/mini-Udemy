@@ -125,7 +125,9 @@ Figura 8. Pull Request del microservicio Cursos hacia el repositorio central
 
 Pull request enviado a la rama central , para su revision respectiva
 
+Evidencias de aprobacion y revision:
 
+<img width="1659" height="823" alt="image" src="https://github.com/user-attachments/assets/57ea3573-2003-473a-aaea-5d9585c1cfbc" />
 
 
 
