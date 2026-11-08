@@ -53,3 +53,41 @@ flowchart LR
 ```
 
 **Tecnologías:** Node.js + Express · PostgreSQL · Docker · Docker Compose · Jest + Supertest · GitHub Actions
+
+**Evidencias**
+**Jhimy Mc**
+Protección de Roles para el PR 
+<img width="940" height="668" alt="image" src="https://github.com/user-attachments/assets/e42d538b-8089-49b0-8993-8b13eff8799b" />
+
+Colaboradores Equipo
+<img width="940" height="678" alt="image" src="https://github.com/user-attachments/assets/bdd7523a-6465-466d-b281-8b21aa1f6c70" />
+<img width="940" height="1200" alt="image" src="https://github.com/user-attachments/assets/ce400a8e-b8f2-45a7-a36b-3db0f39e93bb" />
+
+Pruebas del primer Test de Estudiantes 
+<img width="940" height="466" alt="image" src="https://github.com/user-attachments/assets/8af6dbca-2915-4270-a564-db5263d5d544" />
+
+PR2
+<img width="940" height="925" alt="image" src="https://github.com/user-attachments/assets/b0190880-7c8c-4f01-9903-875d8b013716" />
+
+Automatizado con CI para la autoverificación con Action
+<img width="940" height="923" alt="image" src="https://github.com/user-attachments/assets/6b6dd1d7-a49c-49b9-b92d-c370dbe48351" />
+<img width="940" height="510" alt="image" src="https://github.com/user-attachments/assets/6a547707-0a60-415e-9b1a-e1dde6423677" />
+<img width="940" height="446" alt="image" src="https://github.com/user-attachments/assets/a72b6e4c-94a7-497c-b939-9addf1af6e69" />
+<img width="940" height="510" alt="image" src="https://github.com/user-attachments/assets/3a17cef2-2553-48b9-9f94-4c2231dbc990" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
