@@ -1,0 +1,61 @@
+name: CI - mini-Udemy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  microservicios:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Detectar microservicios disponibles
+        id: svc
+        run: |
+          SERVICIOS=""
+          for s in estudiantes cursos inscripciones progreso certificados; do
+            if [ -f "$s/package.json" ]; then SERVICIOS="$SERVICIOS $s"; fi
+          done
+          echo "Microservicios encontrados:$SERVICIOS"
+          echo "lista=$SERVICIOS" >> "$GITHUB_OUTPUT"
+
+      - name: Validar docker-compose.yml
+        run: docker compose config -q
+
+      - name: Construir las imágenes Docker
+        run: docker compose build ${{ steps.svc.outputs.lista }}
+
+      - name: Iniciar los contenedores
+        run: docker compose up -d ${{ steps.svc.outputs.lista }}
+
+      - name: Esperar a que las APIs respondan
+        run: |
+          declare -A PUERTO=([estudiantes]=3001 [cursos]=3002 [inscripciones]=3003 [progreso]=3004 [certificados]=3005)
+          for s in ${{ steps.svc.outputs.lista }}; do
+            p=${PUERTO[$s]}
+            for intento in $(seq 1 30); do
+              if curl -fsS "http://localhost:$p/health" > /dev/null; then break; fi
+              sleep 2
+            done
+            curl -fsS "http://localhost:$p/health"
+            echo
+          done
+
+      - name: Ejecutar las pruebas de cada microservicio
+        run: |
+          for s in ${{ steps.svc.outputs.lista }}; do
+            echo "===== Pruebas de $s ====="
+            docker compose exec -T "$s" npm test
+          done
+
+      - name: Mostrar registros si falla
+        if: failure()
+        run: docker compose logs
+
+      - name: Detener contenedores
+        if: always()
+        run: docker compose down -v
