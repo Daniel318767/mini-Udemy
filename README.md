@@ -75,6 +75,63 @@ Automatizado con CI para la autoverificación con Action
 <img width="940" height="446" alt="image" src="https://github.com/user-attachments/assets/a72b6e4c-94a7-497c-b939-9addf1af6e69" />
 <img width="940" height="510" alt="image" src="https://github.com/user-attachments/assets/3a17cef2-2553-48b9-9f94-4c2231dbc990" />
 
+**Evidencias**
+**Cristian-> Luis-sketch993**
+Figura 1. Creación de la rama feature/cursos 
+
+<img width="604" height="340" alt="image" src="https://github.com/user-attachments/assets/13b1ad55-46d5-4c0f-ba47-94296378317d" />
+
+Se evidencia la creación correcta de la rama feature/cursos, destinada al desarrollo independiente del microservicio Cursos, manteniendo la rama main como base del proyecto. 
+
+Figura 2. Verificación de la conexión entre Docker Desktop y Ubuntu 
+
+<img width="602" height="347" alt="image" src="https://github.com/user-attachments/assets/91e2fb7d-0956-432d-9736-e5310ebb31c4" />
+
+Se comprueba que Docker está operativo desde Ubuntu mediante la visualización de los contenedores activos. 
+
+Figura 3. Primer commit del microservicio Cursos 
+
+<img width="606" height="109" alt="image" src="https://github.com/user-attachments/assets/75566557-cda7-4808-9b96-2299ff1e3273" />
+
+Se registra el primer avance del microservicio Cursos, incluyendo la estructura inicial, la conexión a PostgreSQL, las dependencias y la configuración de Docker. 
+
+Figura 4. Despliegue del microservicio Cursos mediante Docker Compose 
+
+<img width="607" height="417" alt="image" src="https://github.com/user-attachments/assets/549218d2-8280-41d0-817c-cd4a161f5073" />
+
+Se evidencia la construcción de la imagen Docker, la inicialización de PostgreSQL y el inicio correcto del contenedor del microservicio Cursos. 
+
+Figura 5. Verificación de los registros iniciales en PostgreSQL.
+
+<img width="619" height="345" alt="image" src="https://github.com/user-attachments/assets/7db80d4d-fad0-4421-8d4d-ba135f633ccf" />
+
+Se evidencia la creación de la tabla cursos y la inserción de los tres registros iniciales definidos en el script init.sql. 
+
+Figura 6. Segundo commit del microservicio Cursos 
+
+<img width="606" height="339" alt="image" src="https://github.com/user-attachments/assets/3ceb05ee-2570-4ef9-8543-6fe291aa377f" />
+
+Se evidencia la incorporación del script SQL para la creación y carga inicial de cursos, junto con la implementación de los endpoints y validaciones de la API REST. 
+
+Figura 7. Ejecución satisfactoria de las pruebas automatizadas del microservicio Cursos 
+
+<img width="608" height="344" alt="image" src="https://github.com/user-attachments/assets/1185935a-c878-4baf-b39d-fc572ec03624" />
+
+Se evidencia la ejecución de siete pruebas mediante Jest y Supertest, todas aprobadas, verificando los endpoints, las validaciones y el registro de cursos. 
+
+Figura 8. Pull Request del microservicio Cursos hacia el repositorio central 
+
+<img width="608" height="314" alt="image" src="https://github.com/user-attachments/assets/b3a325fd-9f15-4347-ac2a-0047f0ce05f9" />
+
+Pull request enviado a la rama central , para su revision respectiva
+
+
+
+
+
+
+
+
 
 
 
